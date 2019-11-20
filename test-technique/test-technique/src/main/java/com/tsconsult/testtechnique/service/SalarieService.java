@@ -18,6 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tsconsult.testtechnique.Model.Salarie;
 import com.tsconsult.testtechnique.commun.CustomException;
 
+//1 - A revoir car pas besoin d'utilisation de File, juste une traitement sur List<Salarie> pour supprimer les doublements selon un critere.
+//2 Afin de mieux respecter le pattern MVC faut passer par des interfaces (interface SalarieService et class SalarieServiceImpl qui implemente la première).
+//3 Bonus utilise un LOGGER pour les exceptions techniques et CustomException lorsque on souhaite remonter un message customisé aua Front.
+
 @Service
 public class SalarieService {
 	Field field = null;

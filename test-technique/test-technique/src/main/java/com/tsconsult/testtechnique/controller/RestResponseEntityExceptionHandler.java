@@ -10,6 +10,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.tsconsult.testtechnique.commun.CustomException;
 
+// 1 - Il faut ajouter les autres @ExceptionHandler qui ne sont pas couverts par CustomException s'ils y en a.
+
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
