@@ -1,0 +1,25 @@
+[{
+		"prenom":"Dennis", 
+		"fonction": "Chef de projet",
+		"anneeExperience": 6,
+		"adresse": "Paris"
+	},
+	{
+		"prenom":"Marie", 
+		"fonction": "Chef de projet",
+		"anneeExperience": 5,
+		"adresse": "Nancy"
+	},
+	{
+		"prenom":"Simmon", 
+		"fonction": "Développeur",
+		"anneeExperience": 4,
+		"adresse": "Paris"
+	},
+	{
+		"prenom":"Pierre", 
+		"fonction": "Développeur",
+		"anneeExperience": 4,
+		"adresse": "Nancy"
+	}
+]
