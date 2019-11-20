@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import commun.CustomException;
+import com.tsconsult.testtechnique.commun.CustomException;
 
 @ControllerAdvice
-public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler{
+public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-	@ExceptionHandler(value = {CustomException.class})
-	protected ResponseEntity<Object> FormatExceptionHanle(CustomException ex, WebRequest request){
+	@ExceptionHandler(value = { CustomException.class })
+	protected ResponseEntity<Object> FormatExceptionHanle(CustomException ex, WebRequest request) {
 		String bodyOfResponse = ex.getMessage();
-        return handleExceptionInternal(ex, bodyOfResponse, 
-                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+		return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
-	
+
 }
