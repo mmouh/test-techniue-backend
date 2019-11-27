@@ -24,6 +24,11 @@ public class SalarieController {
 	@Autowired
 	private SalarieService salarieService;
 
+	// 1 - le web service doit prendre en param une List<Salarie> que le Front doit lui fournir et non MultipartFile salaries.
+	// 2 - l'exception est mal gerée de plus d'une manière général aucun traitement ne doit apparaître dans le controller, donc le try catch doit se faire côté service.
+	// 3 - la réponse doit être encapsulée ResponseEntity<List<Salarie>> et non directement List<Salarie> si tu veux justement utiliser ta class RestResponseEntityExceptionHandler.
+
+
 	@PostMapping(value = "/salaries")
 	@ResponseBody
 	public ResponseEntity<List<Salarie>> listerSalaries(@RequestParam("salaries") MultipartFile salaries, @RequestParam String critere) throws CustomException, Exception

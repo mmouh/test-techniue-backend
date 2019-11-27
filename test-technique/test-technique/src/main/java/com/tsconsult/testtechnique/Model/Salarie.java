@@ -6,6 +6,8 @@ public class Salarie {
 	private String fonction;
 	private int anneeExperience;
 	private String adresse;
+	//ajoute ce critere si possible
+	// private double salaire;
 
 	public Salarie() {
 
