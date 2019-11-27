@@ -3,6 +3,8 @@ package com.tsconsult.testtechnique.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,18 +26,10 @@ public class SalarieController {
 
 	@PostMapping(value = "/salaries")
 	@ResponseBody
-	public List<Salarie> listerSalaries(@RequestParam("salaries") MultipartFile salaries, @RequestParam String critere)
-			throws CustomException {
-
-		try {
-
-			return salarieService.dedoubloneSalarie(salaries, critere);
-		} catch (CustomException e) {
-			throw e;
-		} catch (Exception e) {
-			throw new CustomException(e.getMessage());
-		}
-
+	public ResponseEntity<List<Salarie>> listerSalaries(@RequestParam("salaries") MultipartFile salaries, @RequestParam String critere) throws CustomException, Exception
+			{
+			return new ResponseEntity<>(salarieService.dedoubloneSalarie(salaries, critere),HttpStatus.OK);
+	
 	}
 
 }
