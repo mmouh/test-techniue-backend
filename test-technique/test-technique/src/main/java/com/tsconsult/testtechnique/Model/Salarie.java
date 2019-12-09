@@ -1,6 +1,10 @@
 package com.tsconsult.testtechnique.Model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,6 +36,7 @@ public class Salarie {
 	 private double salaire;
 	 
 	 @Column(name = "date_naissance")
+	 @JsonFormat(pattern = "yyyy-MM-dd")
 	 private LocalDate dateNaissance;
 
 	public Salarie() {
@@ -112,10 +117,33 @@ public class Salarie {
 	}
         
         
-
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Salarie))
+			return false;
+                try {
+                	Salarie other = (Salarie) obj;
+        return 
+                this.prenom.equals(other.prenom) &&
+                this.fonction.equals(other.fonction) &&
+                this.anneeExperience==other.anneeExperience &&
+              
+                this.adresse.equals(other.adresse) &&
+                this.salaire==other.salaire &&
+                this.dateNaissance.equals(other.dateNaissance);
+                
+        } catch (NullPointerException e) {
+            return false;
+        }
+		
+	}
 
     @Override
     public String toString() {
-        return "Salarie{" + "id=" + id + ", prenom=" + prenom + ", fonction=" + fonction + ", anneeExperience=" + anneeExperience + ", adresse=" + adresse + ", salaire=" + salaire + ", dateNaissance=" + dateNaissance + '}';
+        return "{" + "id:" + id + ", prenom:" + prenom + ", fonction:" + fonction + ", anneeExperience:" + anneeExperience + ", adresse:" + adresse + ", salaire:" + salaire + ", dateNaissance:" + dateNaissance + "}";
     }
 }

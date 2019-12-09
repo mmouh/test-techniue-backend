@@ -36,7 +36,9 @@ public class SalarieController {
     @PostMapping(value = "/salariesDedoublonnes")
     public ResponseEntity<List<Salarie>> DedoublonneSalaries(@RequestBody List<Salarie> salaries, @RequestParam String critere) throws CustomException, Exception
     {
-	return new ResponseEntity<>(salarieService.dedoubloneSalarie(salaries, critere),HttpStatus.OK);
+    	List<Salarie> sals = salarieService.dedoubloneSalarie(salaries, critere);
+    	return new ResponseEntity<List<Salarie>>(sals, HttpStatus.OK);
+    	
 	
     }
         

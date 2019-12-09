@@ -29,11 +29,11 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 		return new ResponseEntity<>(bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST);
 	}
           
-        @ExceptionHandler({Exception.class})
-        protected ResponseEntity<?> otherExceptionHandler(Exception ex, WebRequest request){
-            String bodyResponse = "Internal Server Error";
-            logger.log(Level.WARN,"Exception levé : " + ex.getClass()+", " +  ex.getMessage());
-            return new ResponseEntity<>(bodyResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler({Exception.class})
+    protected ResponseEntity<?> otherExceptionHandler(Exception ex, WebRequest request){
+         String bodyResponse = "Internal Server Error";
+         logger.log(Level.WARN,"Exception levé : " + ex.getClass()+", " +  ex.getMessage());
+         return new ResponseEntity<>(bodyResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
             
         }
         
