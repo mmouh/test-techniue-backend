@@ -48,7 +48,14 @@ class SalarieServiceTest {
 		assertEquals(salarieDedoublonnes, SalarieService.dedoubloneSalarie(salaries, "fonction"));
 
 	}
-	
+	// Tu test quoi au juste ici ?!!
+	@Test
+	@DisplayName("test avec liste vide retourne une liste vide")
+	void testDedoubloneSalarie1() throws CustomException, Exception{
+		assertEquals(new ArrayList<Salarie>(), new ArrayList<Salarie>());
+	}
+
+	// Voici un exemple de test  "best practice"
 	@Test
 	@DisplayName("test avec liste vide retourne une liste vide")
 	void testDedoubloneSalarie1() throws CustomException, Exception{

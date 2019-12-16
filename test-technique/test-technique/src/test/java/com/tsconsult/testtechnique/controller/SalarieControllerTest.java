@@ -52,6 +52,14 @@ import com.tsconsult.testtechnique.Model.Salarie;
 import com.tsconsult.testtechnique.TestTechniqueApplication;
 import org.springframework.web.context.WebApplicationContext;
 
+//Le projet est de type springBoot
+// les tests aussi doivent etre de même il faut donc une class TestTechniqueApplicationTest afin de bootStrapper les tests de springBootTest
+// avec les annotation suivantes
+//@RunWith(SpringRunner.class)
+//@SpringBootTest
+
+
+// Cette class n'appartient pas a springBoot
 @ExtendWith(SpringExtension.class)
 @RunWith(MockitoJUnitRunner.class)
 @WebMvcTest(controllers = SalarieController.class)

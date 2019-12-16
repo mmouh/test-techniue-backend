@@ -27,7 +27,7 @@ public class SalarieServiceImpl implements SalarieService{
 	CustomException ce = null;
         
 	@Override
-	public List<Salarie> dedoubloneSalarie(List<Salarie> salaries, String critere) throws CustomException, Exception {
+	public List<Salarie> dedoubloneSalarie(List<Salarie> salaries, String critere) throws CustomException {
 		List<Salarie> salariesDedoublounes = new ArrayList<Salarie>();
 		List<Object> critereList = new ArrayList<Object>();
 		try{
