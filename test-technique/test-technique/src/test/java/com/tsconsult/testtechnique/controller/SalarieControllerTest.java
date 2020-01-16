@@ -38,6 +38,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
@@ -60,19 +61,19 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 // Cette class n'appartient pas a springBoot
-@ExtendWith(SpringExtension.class)
-@RunWith(MockitoJUnitRunner.class)
-@WebMvcTest(controllers = SalarieController.class)
+
+@WebMvcTest(SalarieController.class)
 @DisplayName("test de la classe SalarieController")
 class SalarieControllerTest {
 
 
-	@MockBean
-	SalarieService salarieService;
-
 	@Autowired
 	private MockMvc mvc;
-
+	
+	@MockBean
+	SalarieService salarieService;
+	
+	
 	protected ObjectMapper objectMapper;
 	
 	static List<Salarie> salaries = new ArrayList<Salarie>();

@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tsconsult.testtechnique.Model.Salarie;
@@ -33,7 +32,7 @@ public class SalarieController {
 	// 3 - la réponse doit être encapsulée ResponseEntity<List<Salarie>> et non directement List<Salarie> si tu veux justement utiliser ta class RestResponseEntityExceptionHandler.
 
 
-    @PostMapping(value = "/salariesDedoublonnes")
+    @PostMapping(value = "/salariesDedoublonnes",produces = "application/json;charset=UTF-8")
     public ResponseEntity<List<Salarie>> DedoublonneSalaries(@RequestBody List<Salarie> salaries, @RequestParam String critere) throws CustomException, Exception
     {
     	List<Salarie> sals = salarieService.dedoubloneSalarie(salaries, critere);
@@ -42,19 +41,24 @@ public class SalarieController {
 	
     }
         
-    @GetMapping(value = "/salaries")
+    @GetMapping(value = "/salaries",produces = "application/json;charset=UTF-8")
     public ResponseEntity<List<Salarie>> listSalaries()throws CustomException, Exception{
          return new ResponseEntity<> (salarieService.findAll(), HttpStatus.OK);
     } 
     
-    @DeleteMapping(value = "/salaries/{id}")
+    @DeleteMapping(value = "/salaries/{id}",produces = "application/json;charset=UTF-8")
     public ResponseEntity<Object> deleteSalarie(@PathVariable ("id") Integer id) throws CustomException, Exception{
         return new ResponseEntity<>(salarieService.deleteById(id),HttpStatus.OK);
     }  
     
-    @PostMapping(value = "/salaries")
+    @PostMapping(value = "/salaries",produces = "application/json;charset=UTF-8")
     public ResponseEntity<Salarie> addSalarie(@RequestBody Salarie salarie)throws CustomException, Exception{
         return new ResponseEntity<>(salarieService.save(salarie),HttpStatus.OK);
+    }
+    
+    @PutMapping(value = "/salaries",produces = "application/json;charset=UTF-8")
+    public ResponseEntity<Salarie> updateSalarie(@RequestBody Salarie salarie) throws CustomException, Exception{
+    	return new ResponseEntity<>(salarieService.save(salarie),HttpStatus.OK);
     }
    
     

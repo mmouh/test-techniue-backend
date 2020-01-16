@@ -2,6 +2,7 @@ package com.tsconsult.testtechnique.service;
 
 
 import static org.junit.Assert.assertEquals;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -12,21 +13,26 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.tsconsult.testtechnique.Model.Salarie;
 import com.tsconsult.testtechnique.commun.CustomException;
+import com.tsconsult.testtechnique.repository.SalarieRepository;
 
-@ExtendWith(SpringExtension.class)
-@RunWith(MockitoJUnitRunner.class)
 @DisplayName("test de la classe SalarieServiceImpl")
+
+//@ExtendWith(SpringExtension.class)
+@SpringBootTest
 class SalarieServiceTest {
 	
 	@InjectMocks
-	private SalarieServiceImpl SalarieService;
+	SalarieServiceImpl salarieService;
+	
+	@MockBean
+	SalarieRepository salarieRepository;
 	
 	static List<Salarie> salaries = new ArrayList<Salarie>();
 	static List<Salarie> salarieDedoublonnes = new ArrayList<Salarie>();
@@ -39,34 +45,38 @@ class SalarieServiceTest {
 		
 		salarieDedoublonnes.add(salaries.get(0));
 		salarieDedoublonnes.add(salaries.get(2));
+
 	}
 
 	@Test
 	@DisplayName("test dedoublonnement d'une liste de 3 salaries et critère correcte")
 	void testDedoubloneSalarie() throws CustomException, Exception {
-
-		assertEquals(salarieDedoublonnes, SalarieService.dedoubloneSalarie(salaries, "fonction"));
+		//SalarieService salarieService = new SalarieServiceImpl();
+		
+		assertEquals(salarieDedoublonnes, salarieService.dedoubloneSalarie(salaries, "fonction"));
 
 	}
 	// Tu test quoi au juste ici ?!!
+	/*
 	@Test
 	@DisplayName("test avec liste vide retourne une liste vide")
 	void testDedoubloneSalarie1() throws CustomException, Exception{
 		assertEquals(new ArrayList<Salarie>(), new ArrayList<Salarie>());
 	}
+	*/
 
 	// Voici un exemple de test  "best practice"
 	@Test
 	@DisplayName("test avec liste vide retourne une liste vide")
 	void testDedoubloneSalarie1() throws CustomException, Exception{
-		assertEquals(new ArrayList<Salarie>(), new ArrayList<Salarie>());
+		assertEquals(new ArrayList<Salarie>(), salarieService.dedoubloneSalarie(new ArrayList<Salarie>(),"fonction"));
 	}
 	
 	@Test
 	@DisplayName("test avec critere erroné retourne une exception")
 	void testDedoubloneSalarie2() {
 		Assertions.assertThrows(CustomException.class, () -> {
-			SalarieService.dedoubloneSalarie(salaries,"fonct");
+			salarieService.dedoubloneSalarie(salaries,"fonct");
 		});
 	}
 
